@@ -1,0 +1,24 @@
+pragma language_version >= 0.23;
+import CompactStandardLibrary;
+
+// ─── Privacy Model ───────────────────────────────────────────────────────────
+//
+// PUBLIC STATE
+// `eligible` is stored on the blockchain and can be observed publicly.
+//
+// PRIVATE INPUT
+// `secretValue` is provided as a private circuit parameter.
+// It is used inside the zero-knowledge circuit but is NOT disclosed.
+//
+// PROOF
+// The circuit deliberately uses disclose() only on the final boolean result.
+// Therefore, observers can learn whether the value meets the threshold,
+// but they do not learn the private value itself.
+
+export ledger eligible: Boolean;
+
+export circuit proveEligibility(secretValue: Uint<16>): [] {
+    const threshold: Uint<16> = 18;
+
+    eligible = disclose(secretValue >= threshold);
+}
