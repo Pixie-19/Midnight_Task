@@ -1,0 +1,25 @@
+# ── Build output ──────────────────────────────────────────────────────────────
+dist/
+
+# ── Dependencies ──────────────────────────────────────────────────────────────
+node_modules/
+
+# ── Environment secrets ───────────────────────────────────────────────────────
+# .env.example is committed; .env is NOT (it may contain real contract addresses)
+.env
+.env.local
+.env.*.local
+
+# ── Editor / OS ───────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/settings.json
+
+# ── TypeScript cache ──────────────────────────────────────────────────────────
+*.tsbuildinfo
+
+# ── Logs ──────────────────────────────────────────────────────────────────────
+*.log
+npm-debug.log*

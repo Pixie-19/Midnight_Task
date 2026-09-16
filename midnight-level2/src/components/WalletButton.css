@@ -1,0 +1,210 @@
+/* ── WalletButton component styles ───────────────────────────────────────── */
+
+/* ── Button base ──────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: 99px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s, opacity 0.15s;
+  border: none;
+  outline-offset: 3px;
+  white-space: nowrap;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Primary: gradient purple */
+.btn--primary {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+  color: #fff;
+  box-shadow: 0 0 18px rgba(168, 85, 247, 0.4);
+}
+
+.btn--primary:hover:not(:disabled) {
+  box-shadow: 0 0 28px rgba(168, 85, 247, 0.6);
+  background: linear-gradient(135deg, #8b5cf6 0%, #c084fc 100%);
+}
+
+.btn--primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Ghost: subtle border */
+.btn--ghost {
+  background: transparent;
+  color: #a09cbd;
+  border: 1px solid rgba(124, 58, 237, 0.35);
+}
+
+.btn--ghost:hover {
+  color: #f1f0ff;
+  border-color: rgba(168, 85, 247, 0.6);
+  background: rgba(124, 58, 237, 0.08);
+}
+
+.btn--sm {
+  padding: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+}
+
+/* Loading state */
+.btn--loading {
+  pointer-events: none;
+}
+
+.btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Wallet panel wrapper ─────────────────────────────────────────────────── */
+.wallet-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+/* ── Connected row ────────────────────────────────────────────────────────── */
+.wallet-connected-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.wallet-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.wallet-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.wallet-dot--connected {
+  background: #4ade80;
+  box-shadow: 0 0 6px rgba(74, 222, 128, 0.7);
+  animation: blink-green 2.5s ease-in-out infinite;
+}
+
+@keyframes blink-green {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+.wallet-network-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+}
+
+/* ── Address group ────────────────────────────────────────────────────────── */
+.wallet-address-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.wallet-address-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.wallet-address-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #a09cbd;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  min-width: 6rem;
+}
+
+.wallet-address {
+  font-size: 0.78rem;
+  color: #c4b5fd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
+}
+
+/* ── Error area ───────────────────────────────────────────────────────────── */
+.wallet-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  animation: fadein 0.2s ease;
+}
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.wallet-error-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.wallet-error-text {
+  color: #fca5a5;
+  flex: 1;
+}
+
+.wallet-error-link {
+  display: block;
+  margin-top: 0.35rem;
+  color: #c4b5fd;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.8rem;
+}
+
+.wallet-error-link:hover {
+  text-decoration: underline;
+}

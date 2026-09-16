@@ -1,0 +1,214 @@
+/* ── Reset & base ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Midnight palette */
+  --mn-purple-900: #0d0a1a;
+  --mn-purple-800: #150f2e;
+  --mn-purple-700: #1e1540;
+  --mn-purple-400: #7c3aed;
+  --mn-purple-300: #a855f7;
+  --mn-purple-200: #c4b5fd;
+  --mn-cyan-400:   #22d3ee;
+  --mn-cyan-300:   #67e8f9;
+  --mn-green-400:  #4ade80;
+
+  /* Semantic tokens */
+  --bg-base:      var(--mn-purple-900);
+  --bg-surface:   var(--mn-purple-800);
+  --bg-elevated:  var(--mn-purple-700);
+  --text-primary: #f1f0ff;
+  --text-muted:   #a09cbd;
+  --border:       rgba(124, 58, 237, 0.25);
+  --accent:       var(--mn-purple-300);
+  --accent-glow:  rgba(168, 85, 247, 0.35);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  color-scheme: dark;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── App shell ───────────────────────────────────────────────── */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1.5rem;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(124, 58, 237, 0.18) 0%, transparent 60%),
+    var(--bg-base);
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.logo-mark {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 1.25rem;
+}
+
+.logo-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--mn-purple-300);
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+.logo-dot:nth-child(2) { animation-delay: 0.4s; background: var(--mn-cyan-400); }
+.logo-dot:nth-child(3) { animation-delay: 0.8s; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.4; transform: scale(0.85); }
+  50%       { opacity: 1;   transform: scale(1.15); }
+}
+
+.app-title {
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #f1f0ff 30%, var(--mn-purple-200) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app-subtitle {
+  margin-top: 0.5rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+/* ── Card ───────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 0 40px var(--accent-glow);
+}
+
+.card + .card {
+  margin-top: 1.25rem;
+}
+
+.card-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+.wallet-card {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Status card ────────────────────────────────────────────── */
+.status-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: 99px;
+  width: fit-content;
+}
+
+.status-badge--ready {
+  background: rgba(74, 222, 128, 0.12);
+  color: var(--mn-green-400);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+.status-description {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+/* ── Info grid ──────────────────────────────────────────────── */
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.25rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: 0.875rem;
+}
+
+.info-row dt {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.info-row dd {
+  color: var(--text-primary);
+  text-align: right;
+  font-weight: 500;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.8em;
+  color: var(--mn-cyan-300);
+}
